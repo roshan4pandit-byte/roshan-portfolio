@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Roshan — Entrepreneur & Builder</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #12121a;
+    --bg3: #1a1a28;
+    --accent: #7f77dd;
+    --accent2: #5dcaa5;
+    --text: #f0effe;
+    --muted: #888;
+    --border: rgba(127,119,221,0.2);
+    --card: rgba(255,255,255,0.04);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(10,10,15,0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 60px;
+  }
+  .logo { font-size: 1.1rem; font-weight: 700; letter-spacing: 2px; color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta { background: var(--accent); color: #fff !important; padding: 7px 16px; border-radius: 7px; font-weight: 600 !important; }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* SECTIONS */
+  section { padding: 110px 10%; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+    padding-top: 60px; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(127,119,221,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: -100px; left: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(93,202,165,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(127,119,221,0.15); border: 1px solid var(--border);
+    color: var(--accent); font-size: 0.8rem; padding: 6px 14px;
+    border-radius: 20px; margin-bottom: 2rem; letter-spacing: 1px;
+    width: fit-content;
+  }
+  .hero h1 {
+    font-size: clamp(2.8rem, 6vw, 5.5rem); font-weight: 800;
+    line-height: 1.05; margin-bottom: 1.5rem; letter-spacing: -1px;
+  }
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .hero-desc { font-size: 1.1rem; color: var(--muted); max-width: 550px; line-height: 1.7; margin-bottom: 2.5rem; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent); color: #fff; padding: 14px 28px;
+    border: none; border-radius: 8px; font-size: 0.95rem; font-weight: 600;
+    cursor: pointer; text-decoration: none; transition: opacity 0.2s, transform 0.2s; display: inline-block;
+  }
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--text); padding: 14px 28px;
+    border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; font-weight: 600;
+    cursor: pointer; text-decoration: none; transition: border-color 0.2s, transform 0.2s; display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    padding-top: 2rem; border-top: 1px solid var(--border);
+  }
+  .stat h3 { font-size: 1.8rem; font-weight: 700; color: var(--accent); }
+  .stat p { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+
+  /* ABOUT */
+  .about { background: var(--bg2); }
+  .section-label { font-size: 0.78rem; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.75rem; }
+  .section-title { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+  .about-text p strong { color: var(--text); }
+  .about-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .mini-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.25rem; transition: border-color 0.2s;
+  }
+  .mini-card:hover { border-color: var(--accent); }
+  .mini-card .icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .mini-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
+  .mini-card p { font-size: 0.8rem; color: var(--muted); }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .service-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 2rem;
+    transition: border-color 0.3s, transform 0.3s; cursor: default;
+  }
+  .service-card:hover { border-color: var(--accent); transform: translateY(-6px); }
+  .service-icon {
+    width: 48px; height: 48px; background: rgba(127,119,221,0.15);
+    border-radius: 12px; display: flex; align-items: center;
+    justify-content: center; font-size: 1.4rem; margin-bottom: 1.25rem;
+  }
+  .service-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; }
+  .service-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+
+  /* PORTFOLIO */
+  .portfolio { background: var(--bg2); }
+  .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .project-card {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .project-card:hover { transform: translateY(-6px); border-color: var(--accent2); }
+  .project-img { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
+  .project-body { padding: 1.5rem; }
+  .project-tag { font-size: 0.72rem; color: var(--accent2); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .project-body h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .project-body p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+  .project-links { display: flex; gap: 0.75rem; margin-top: 1rem; }
+  .project-links a {
+    font-size: 0.8rem; color: var(--accent); text-decoration: none;
+    border: 1px solid var(--border); padding: 5px 12px; border-radius: 20px; transition: background 0.2s;
+  }
+  .project-links a:hover { background: rgba(127,119,221,0.15); }
+
+  /* SKILLS */
+  .skills-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem; }
+  .skill-group h3 { font-size: 1rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--muted); }
+  .skill-item { margin-bottom: 1.25rem; }
+  .skill-info { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.88rem; }
+  .skill-bar { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+  .skill-fill {
+    height: 100%; border-radius: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    width: 0; transition: width 1.2s ease;
+  }
+
+  /* CONTACT */
+  .contact { background: var(--bg2); }
+  .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 3rem; }
+  .contact-info h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: 1rem; }
+  .contact-info p { color: var(--muted); line-height: 1.7; margin-bottom: 2rem; }
+  .contact-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+  .contact-dot {
+    width: 38px; height: 38px; background: rgba(127,119,221,0.15);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .contact-item p { font-size: 0.88rem; color: var(--muted); margin: 0; }
+  .contact-item strong { color: var(--text); display: block; font-size: 0.92rem; }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-form input, .contact-form textarea {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 16px; color: var(--text);
+    font-size: 0.92rem; font-family: inherit; outline: none;
+    transition: border-color 0.2s; resize: none;
+  }
+  .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--muted); }
+  .contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent); }
+  .contact-form textarea { min-height: 120px; }
+  .contact-form button {
+    background: var(--accent); color: #fff; border: none;
+    border-radius: 10px; padding: 14px; font-size: 0.95rem; font-weight: 600;
+    cursor: pointer; transition: opacity 0.2s; font-family: inherit;
+  }
+  .contact-form button:hover { opacity: 0.85; }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg2); border-top: 1px solid var(--border);
+    padding: 2rem 10%; display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 1rem;
+  }
+  footer p { font-size: 0.85rem; color: var(--muted); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--accent); }
+
+  /* SCROLL ANIMATION */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    section { padding: 80px 6%; }
+    .about-grid, .skills-wrapper, .contact-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+    nav { padding: 0 6%; }
+    .nav-links { gap: 1rem; }
+    .nav-links li:not(:last-child) { display: none; }
+    .hero h1 { font-size: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">ROSHAN</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-badge">🚀 Entrepreneur &amp; Builder</div>
+  <h1>Building Ideas<br>Into <span>Reality</span></h1>
+  <p class="hero-desc">I create digital products, SaaS solutions, and business ventures that solve real problems. From concept to launch — I build it all.</p>
+  <div class="hero-btns">
+    <a href="#portfolio" class="btn-primary">View My Work</a>
+    <a href="#contact" class="btn-outline">Let's Talk</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><h3>3+</h3><p>Years Building</p></div>
+    <div class="stat"><h3>5+</h3><p>Projects Shipped</p></div>
+    <div class="stat"><h3>∞</h3><p>Ideas in Pipeline</p></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid fade-up">
+    <div class="about-text">
+      <p class="section-label">About Me</p>
+      <h2 class="section-title">Entrepreneur.<br>Maker. Innovator.</h2>
+      <p>I'm based in <strong>Haryana, India</strong> — building businesses at the intersection of technology and real-world problems. Whether it's a SaaS product or a 3D printing service, I love turning ideas into ventures.</p>
+      <p>Currently building <strong>ChatKart</strong> — a WhatsApp-powered e-commerce solution for Shopify stores, helping merchants connect with customers on the world's largest messaging platform.</p>
+      <a href="#contact" class="btn-outline" style="display:inline-block; margin-top:1.5rem;">Get In Touch →</a>
+    </div>
+    <div class="about-cards">
+      <div class="mini-card"><div class="icon">💻</div><h4>SaaS Builder</h4><p>Shopify apps &amp; WhatsApp integrations</p></div>
+      <div class="mini-card"><div class="icon">🖨️</div><h4>3D Printing</h4><p>FDM printing &amp; articulated designs</p></div>
+      <div class="mini-card"><div class="icon">📱</div><h4>Product Design</h4><p>End-to-end digital products</p></div>
+      <div class="mini-card"><div class="icon">📈</div><h4>Business Dev</h4><p>Ventures from idea to revenue</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="fade-up">
+    <p class="section-label">What I Offer</p>
+    <h2 class="section-title">Services</h2>
+  </div>
+  <div class="services-grid fade-up">
+    <div class="service-card">
+      <div class="service-icon">⚡</div>
+      <h3>Shopify App Development</h3>
+      <p>Custom Shopify apps with WhatsApp, Meta, and third-party integrations to supercharge your store's reach and automation.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📦</div>
+      <h3>3D Printing Services</h3>
+      <p>High-quality FDM prints for prototypes, custom parts, and articulated models using professional-grade printers.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🤝</div>
+      <h3>Business Consulting</h3>
+      <p>Strategic advice for early-stage startups and entrepreneurs on product-market fit, tech stack, and go-to-market strategy.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌐</div>
+      <h3>Web Development</h3>
+      <p>Clean, fast, conversion-focused websites and landing pages for businesses, products, and personal brands.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="fade-up">
+    <p class="section-label">Featured Work</p>
+    <h2 class="section-title">Projects</h2>
+  </div>
+  <div class="portfolio-grid fade-up">
+    <div class="project-card">
+      <div class="project-img" style="background: linear-gradient(135deg, #1a1a28, #2a1a3a);">💬</div>
+      <div class="project-body">
+        <p class="project-tag">SaaS · Shopify</p>
+        <h3>ChatKart</h3>
+        <p>WhatsApp Cloud API integration for Shopify stores. Enables merchants to send order updates, abandoned cart recovery, and customer support via WhatsApp.</p>
+        <div class="project-links">
+          <a href="#">Live App</a>
+          <a href="#">Case Study</a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-img" style="background: linear-gradient(135deg, #0a1a10, #0a2a1a);">🖨️</div>
+      <div class="project-body">
+        <p class="project-tag">Business · 3D Print</p>
+        <h3>PrintForge</h3>
+        <p>3D printing service business offering custom prints, prototypes, and articulated designs. Full-stack business with online ordering and INR pricing.</p>
+        <div class="project-links">
+          <a href="#">View Site</a>
+          <a href="#">Services</a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-img" style="background: linear-gradient(135deg, #1a120a, #2a1a0a);">🐉</div>
+      <div class="project-body">
+        <p class="project-tag">Design · 3D Model</p>
+        <h3>Articulated Dragon</h3>
+        <p>Fully articulated dragon model designed in Tinkercad, optimized for FDM printing with print-in-place joints and clean layer adhesion.</p>
+        <div class="project-links">
+          <a href="#">View Model</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="fade-up">
+    <p class="section-label">Expertise</p>
+    <h2 class="section-title">Skills</h2>
+  </div>
+  <div class="skills-wrapper fade-up">
+    <div class="skill-group">
+      <h3>Technical</h3>
+      <div class="skill-item">
+        <div class="skill-info"><span>Shopify &amp; APIs</span><span>85%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span>WhatsApp / Meta APIs</span><span>80%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span>Web Development</span><span>75%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span>3D Modeling (Tinkercad)</span><span>65%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="65"></div></div>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3>Business</h3>
+      <div class="skill-item">
+        <div class="skill-info"><span>Product Strategy</span><span>90%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span>Go-To-Market</span><span>80%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span>Business Operations</span><span>75%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-info"><span>Accounting / TallyPrime</span><span>55%</span></div>
+        <div class="skill-bar"><div class="skill-fill" data-width="55"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="fade-up">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title">Contact</h2>
+  </div>
+  <div class="contact-wrapper fade-up">
+    <div class="contact-info">
+      <h3>Let's build something together</h3>
+      <p>Have a project in mind, want to collaborate, or just want to say hello? Drop a message — I'd love to hear from you.</p>
+      <div class="contact-item">
+        <div class="contact-dot">📍</div>
+        <div><strong>Location</strong><p>Haryana, India</p></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-dot">📧</div>
+        <div><strong>Email</strong><p>roshan4pandit@gmail.com</p></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-dot">📞</div>
+        <div><strong>Phone</strong><p>+91 89500 50805</p></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-dot">💼</div>
+        <div><strong>Open to</strong><p>Collabs, Consulting &amp; Projects</p></div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <input type="text" placeholder="Your Name" />
+      <input type="email" placeholder="Your Email" />
+      <input type="text" placeholder="Subject" />
+      <textarea placeholder="Your Message..."></textarea>
+      <button type="button">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Roshan · Built with passion from Haryana 🇮🇳</p>
+  <div class="footer-links">
+    <a href="#home">Home</a>
+    <a href="#portfolio">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Animate skill bars when visible
+        entry.target.querySelectorAll('.skill-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Active nav link highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 80) current = sec.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? '#f0effe' : '';
+    });
+  });
+
+  // Contact form submit
+  document.querySelector('.contact-form button').addEventListener('click', () => {
+    const inputs = document.querySelectorAll('.contact-form input, .contact-form textarea');
+    let filled = true;
+    inputs.forEach(i => { if (!i.value.trim()) filled = false; });
+    if (!filled) { alert('Please fill all fields!'); return; }
+    alert('Message sent! I\'ll get back to you soon 🚀');
+    inputs.forEach(i => i.value = '');
+  });
+</script>
+</body>
+</html>
