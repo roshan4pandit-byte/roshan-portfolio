@@ -413,13 +413,13 @@
         <div><strong>Open to</strong><p>Collabs, Consulting &amp; Projects</p></div>
       </div>
     </div>
-    <div class="contact-form">
-      <input type="text" placeholder="Your Name" />
-      <input type="email" placeholder="Your Email" />
-      <input type="text" placeholder="Subject" />
-      <textarea placeholder="Your Message..."></textarea>
-      <button type="button">Send Message →</button>
-    </div>
+    <form class="contact-form" action="https://formspree.io/f/xkoeqyrg" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <input type="text" name="subject" placeholder="Subject" required />
+      <textarea name="message" placeholder="Your Message..." required></textarea>
+      <button type="submit">Send Message →</button>
+    </form>
   </div>
 </section>
 
